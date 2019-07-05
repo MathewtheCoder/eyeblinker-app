@@ -1,22 +1,29 @@
-// const blinkerSettings = {
-//   time: 20000
-// };
-// chrome.storage.sync.set({ yourBody: 'myBody' }, function() {
-// });
-// chrome.storage.sync.get(['yourBody'], function(items) {
-//   console.log('Data', items);
-// });
+const blinkerSettings = {
+  durationTime: 20000,
+  message: 'Give your eyes a break and reduce your eye strain',
+  reminderDuration: 40000
+};
+// eslint-disable-next-line
+chrome.storage.sync.set(blinkerSettings, function() {});
+// eslint-disable-next-line
+chrome.storage.sync.get(
+  ['durationTime', 'message', 'reminderDuration'],
+  function(items) {
+    console.log('durationTime', items);
+  }
+);
+
 const options = {
-  type: 'list',
+  type: 'basic',
   title: 'It is a time to blink',
   message: 'Give your eyes a break and reduce your eye strain',
   priority: 1,
-  items: [
-    {
-      title: 'It is a time to blink',
-      message: 'Give your eyes a break and reduce your eye strain'
-    }
-  ],
+  // items: [
+  //   {
+  //     title: 'It is a time to blink',
+  //     message: 'Give your eyes a break and reduce your eye strain'
+  //   }
+  // ],
   iconUrl: 'icon.png'
 };
 
