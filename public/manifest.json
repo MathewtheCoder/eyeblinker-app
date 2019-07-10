@@ -9,9 +9,9 @@
     "default_title": "Open the popup",
     "default_icon": "icon.png"
   },
-  "permissions": ["notifications", "storage"],
+  "permissions": ["notifications", "storage", "idle"],
   "background": {
     "scripts": ["app/background.js"],
-    "persistent": false
+    "persistent": true
   }
 }

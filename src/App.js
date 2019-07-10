@@ -4,38 +4,42 @@ import 'semantic-ui-css/semantic.min.css';
 
 import React from 'react';
 import { Header, Grid, Checkbox, Form, Icon } from 'semantic-ui-react';
+import _ from 'underscore';
 
 import './App.css';
 
 class App extends React.Component {
-  state = { durationTime: 1 };
+  state = { durationTime: 1, showBlinker: true };
+
+  constructor(props) {
+    super(props);
+    this.handleChange = _.debounce(this.handleChange.bind(this), 100);
+  }
+
+  componentDidMount = () => {
+    chrome.storage.sync.get(['durationTime', 'showBlinker'], items => {
+      const { durationTime, showBlinker } = items;
+      this.setState({
+        durationTime,
+        showBlinker
+      });
+    });
+  };
 
   handleChange = (e, { name, value }) => {
-    console.log(name, value);
     this.setState({ [name]: value });
-
     chrome.runtime.sendMessage({ [name]: value });
   };
 
-  toggleVisibility = () =>
-    this.setState(prevState => ({ visible: !prevState.visible }));
-
-  componentDidMount = () => {
-    // chrome.storage.sync.get(['durationTime'], items => {
-    //   if (items.durationTime) {
-    //     this.setState({
-    //       durationTime: items.durationTime / 1000
-    //     });
-    //   }
-    // });
-  };
-
   handleClick = () => {
-    chrome.runtime.sendMessage({ time: 5000 });
+    const { showBlinker } = this.state;
+    const showBlinkerOrNot = showBlinker;
+    this.setState({ showBlinker: !showBlinkerOrNot });
+    chrome.runtime.sendMessage({ showBlinker: !showBlinkerOrNot });
   };
 
   render() {
-    const { durationTime } = this.state;
+    const { durationTime, showBlinker } = this.state;
 
     return (
       <div className="App">
@@ -44,7 +48,11 @@ class App extends React.Component {
             <Header as="h3">Eye Blinker</Header>
           </Grid.Column>
           <Grid.Column computer="8">
-            <Checkbox toggle onChange={this.handleClick} />
+            <Checkbox
+              toggle
+              onChange={this.handleClick}
+              checked={showBlinker}
+            />
           </Grid.Column>
         </Grid>
 
@@ -56,7 +64,7 @@ class App extends React.Component {
               max={60}
               name="durationTime"
               onChange={this.handleChange}
-              step={1}
+              step={5}
               type="range"
               value={durationTime}
             />

@@ -3,23 +3,13 @@ body {
   padding: 0;
   font-family: sans-serif;
   min-width: 300px;
-  min-height: 150px;
+  /* min-height: 150px; */
 }
 .App {
   padding: 8px !important;
 }
 .Item {
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.ui.toggle.checkbox input:focus:checked ~ .box:before,
-.ui.toggle.checkbox input:focus:checked ~ label:before {
-  background-color: #15c39a !important;
-}
-
-.ui.toggle.checkbox .box:before,
-.ui.toggle.checkbox label:before {
-  background-color: #acacae !important;
 }
 
 .ui.grid > .column:not(.row) {
