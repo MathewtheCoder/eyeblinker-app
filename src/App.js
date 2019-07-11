@@ -3,13 +3,16 @@
 import 'semantic-ui-css/semantic.min.css';
 
 import React from 'react';
-import { Header, Grid, Checkbox, Form, Icon } from 'semantic-ui-react';
+import { Grid, Icon, Loader } from 'semantic-ui-react';
 import _ from 'underscore';
+import Switch from 'rc-switch';
+
+import { Slider } from 'react-semantic-ui-range';
 
 import './App.css';
 
 class App extends React.Component {
-  state = { durationTime: 1, showBlinker: true };
+  state = { durationTime: 20, showBlinker: true, showWindow: true };
 
   constructor(props) {
     super(props);
@@ -21,54 +24,78 @@ class App extends React.Component {
       const { durationTime, showBlinker } = items;
       this.setState({
         durationTime,
-        showBlinker
+        showBlinker,
+        showWindow: true
       });
     });
   };
 
-  handleChange = (e, { name, value }) => {
-    this.setState({ [name]: value });
-    chrome.runtime.sendMessage({ [name]: value });
+  sendMessageToChrome = ({ key, value }) => {
+    chrome.runtime.sendMessage({ [key]: value });
+  };
+
+  handleChange = ({ durationTime }) => {
+    this.setState({ durationTime });
+
+    this.sendMessageToChrome({ key: 'durationTime', value: durationTime });
   };
 
   handleClick = () => {
     const { showBlinker } = this.state;
     const showBlinkerOrNot = showBlinker;
     this.setState({ showBlinker: !showBlinkerOrNot });
-    chrome.runtime.sendMessage({ showBlinker: !showBlinkerOrNot });
+    this.sendMessageToChrome({ key: 'showBlinker', value: !showBlinkerOrNot });
+  };
+
+  openTwitter = () => {
+    window.open('https://twitter.com/muhsinkeramam', '_blank');
   };
 
   render() {
-    const { durationTime, showBlinker } = this.state;
+    const { durationTime, showBlinker, showWindow } = this.state;
 
     return (
       <div className="App">
         <Grid columns={2} className="Item" textAlign="center">
           <Grid.Column computer="8">
-            <Header as="h3">Eye Blinker</Header>
+            <h2>Eye Blinker</h2>
           </Grid.Column>
-          <Grid.Column computer="8">
-            <Checkbox
-              toggle
+          <Grid.Column computer="8" className="rc-box-wrapper">
+            <Switch
               onChange={this.handleClick}
               checked={showBlinker}
+              checkedChildren="On"
+              unCheckedChildren="Off"
             />
           </Grid.Column>
         </Grid>
 
         <Grid columns={1} className="Item">
-          <Grid.Column as={Form}>
-            <Form.Input
-              label={`Duration : ${durationTime} Minutes `}
-              min={5}
-              max={60}
-              name="durationTime"
-              onChange={this.handleChange}
-              step={5}
-              type="range"
-              value={durationTime}
-            />
-          </Grid.Column>
+          {showWindow ? (
+            <Grid.Column>
+              <h5 className="durationText">{`Duration : ${durationTime} Minutes `}</h5>
+
+              <Slider
+                color="black"
+                inverted={false}
+                settings={{
+                  start: durationTime,
+                  min: 5,
+                  max: 60,
+                  step: 5,
+                  onChange: value => {
+                    this.handleChange({
+                      durationTime: value
+                    });
+                  }
+                }}
+              />
+            </Grid.Column>
+          ) : (
+            <Grid.Column>
+              <Loader active inline="centered" />
+            </Grid.Column>
+          )}
         </Grid>
 
         <Grid columns={2}>
@@ -77,9 +104,13 @@ class App extends React.Component {
           </Grid.Column>
 
           <Grid.Column computer="8" textAlign="right">
-            <Icon name="share alternate" size="large" />
-            <Icon name="twitter" size="large" />
-            <Icon name="facebook" size="large" />
+            <Icon name="share alternate" size="large" className="icon" />
+            <Icon
+              name="twitter"
+              size="large"
+              className="icon"
+              onClick={this.openTwitter}
+            />
           </Grid.Column>
         </Grid>
       </div>
