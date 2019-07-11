@@ -35,7 +35,7 @@ chrome.storage.sync.get(['durationTime', 'showBlinker'], function(items) {
   });
 });
 setInterval(() => {
-  console.log(new Date());
+  console.log(new Date(), blinkerSettings);
 }, 60000);
 
 const options = {
@@ -43,7 +43,8 @@ const options = {
   title: 'It is a time to blink',
   message: 'Give your eyes a break and reduce your eye strain',
   priority: 1,
-  iconUrl: 'icon.png'
+  iconUrl: 'icon.png',
+  eventTime: 20000
 };
 
 function sendNotification() {
@@ -99,6 +100,16 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     blinkerSettings.showBlinker = request.showBlinker;
     blinkerSettings.durationTime = blinkerSettings.durationTime;
     initializeTimer(blinkerSettings.durationTime);
+    if (!blinkerSettings.showBlinker) {
+      // eslint-disable-next-line
+      chrome.browserAction.setBadgeText({ text: 'off' });
+      // eslint-disable-next-line
+      chrome.browserAction.setBadgeBackgroundColor({ color: 'red' });
+    } else {
+      // eslint-disable-next-line
+      chrome.browserAction.setBadgeText({ text: '' });
+    }
+
     // eslint-disable-next-line
     chrome.storage.sync.set(blinkerSettings, function() {});
     // eslint-disable-next-line

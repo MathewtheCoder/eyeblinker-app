@@ -60,7 +60,7 @@ class App extends React.Component {
           <Grid.Column as={Form}>
             <Form.Input
               label={`Duration : ${durationTime} Minutes `}
-              min={1}
+              min={5}
               max={60}
               name="durationTime"
               onChange={this.handleChange}
