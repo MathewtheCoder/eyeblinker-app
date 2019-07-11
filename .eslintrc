@@ -20,7 +20,8 @@
     "FormData": true,
     "FileReader": true,
     "Blob": true,
-    "navigator": true
+    "navigator": true,
+    "chrome": true
   },
   "parser": "babel-eslint"
 }
