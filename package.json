@@ -9,8 +9,7 @@
     "react-semantic-ui-range": "^0.7.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.87.2",
-    "rc-switch": "^1.9.0",
-    "underscore": "^1.9.1"
+    "rc-switch": "^1.9.0"
   },
   "scripts": {
     "start": "react-scripts start",
