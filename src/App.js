@@ -32,8 +32,6 @@ class App extends React.Component {
   };
 
   handleChange = ({ durationTime }) => {
-    console.log('durationTime', durationTime);
-
     this.setState({ durationTime });
 
     this.sendMessageToChrome({ key: 'durationTime', value: durationTime });
