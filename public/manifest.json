@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
-  "name": "Eye blinker",
+  "name": "Eye Blinker",
   "author": "Muhsin.K",
-  "version": "1.0",
+  "version": "0.0.1",
   "description": "A Chrome extension that will help for the computer users to follow the 20-20-20 rule",
   "browser_action": {
     "default_popup": "index.html",
-    "default_title": "Eye blinker",
+    "default_title": "Eye Blinker",
     "default_icon": "icon.png"
   },
   "icons": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" },
