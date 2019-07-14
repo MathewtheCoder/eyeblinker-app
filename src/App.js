@@ -4,7 +4,7 @@ import 'semantic-ui-css/semantic.min.css';
 
 import React from 'react';
 import { Grid, Icon, Loader } from 'semantic-ui-react';
-import _ from 'underscore';
+
 import Switch from 'rc-switch';
 
 import { Slider } from 'react-semantic-ui-range';
@@ -14,10 +14,7 @@ import './App.css';
 class App extends React.Component {
   state = { durationTime: 20, showBlinker: true, showWindow: true };
 
-  constructor(props) {
-    super(props);
-    this.handleChange = _.debounce(this.handleChange.bind(this), 100);
-  }
+  // this.handleChange = _.debounce(this.handleChange.bind(this), 100);s
 
   componentDidMount = () => {
     chrome.storage.sync.get(['durationTime', 'showBlinker'], items => {
@@ -35,6 +32,8 @@ class App extends React.Component {
   };
 
   handleChange = ({ durationTime }) => {
+    console.log('durationTime', durationTime);
+
     this.setState({ durationTime });
 
     this.sendMessageToChrome({ key: 'durationTime', value: durationTime });
