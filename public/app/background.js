@@ -16,7 +16,7 @@ const options = {
   title: 'It is a time to blink',
   message: 'Give your eyes a break and reduce your eye strain',
   priority: 1,
-  iconUrl: 'icon.png',
+  iconUrl: 'icons/icon.png',
   eventTime: 20000
 };
 
