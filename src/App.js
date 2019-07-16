@@ -15,18 +15,22 @@ class App extends React.Component {
   state = { durationTime: 20, showBlinker: true, showWindow: true };
 
   componentDidMount = () => {
-    chrome.storage.sync.get(['durationTime', 'showBlinker'], items => {
-      const { durationTime, showBlinker } = items;
-      this.setState({
-        durationTime,
-        showBlinker,
-        showWindow: true
+    if (chrome && chrome.storage) {
+      chrome.storage.sync.get(['durationTime', 'showBlinker'], items => {
+        const { durationTime, showBlinker } = items;
+        this.setState({
+          durationTime,
+          showBlinker,
+          showWindow: true
+        });
       });
-    });
+    }
   };
 
   sendMessageToChrome = ({ key, value }) => {
-    chrome.runtime.sendMessage({ [key]: value });
+    if (chrome && chrome.runtime) {
+      chrome.runtime.sendMessage({ [key]: value });
+    }
   };
 
   handleChange = ({ durationTime }) => {
