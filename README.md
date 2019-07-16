@@ -31,13 +31,13 @@ rm -rf .git && git init
 
 ```
 # Install dependencies
-yarn
-# Start  client
+yarn install
+# Start the app
 yarn run start
 
 ```
 
-#### Run chrome extenstion
+#### Run chrome extension
 
 ```
 # Make a build
@@ -48,11 +48,10 @@ yarn build
 # Open chrome://extensions/ from your chrome browser and enable Developer mode
 ```
 
-<img src="assets/chrome-extention.png" alt="Markdownify" >
+<img src="assets/chrome-extension.png" alt="Markdownify" >
 
 ```
-# Click "Load unpacked" button and upload the build folder
-
+# Click on "Load unpacked" button and upload the build folder
 ```
 
 ## ☑ TODO
