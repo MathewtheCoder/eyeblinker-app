@@ -59,6 +59,7 @@ yarn build
 - [ ] Ability to add sounds for reminder
 - [ ] Ability to customize reminder message
 - [ ] Change the font family
+- [ ] Add google analytics
 
 ## License
 
