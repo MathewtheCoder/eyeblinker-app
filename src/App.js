@@ -14,8 +14,6 @@ import './App.css';
 class App extends React.Component {
   state = { durationTime: 20, showBlinker: true, showWindow: true };
 
-  // this.handleChange = _.debounce(this.handleChange.bind(this), 100);s
-
   componentDidMount = () => {
     chrome.storage.sync.get(['durationTime', 'showBlinker'], items => {
       const { durationTime, showBlinker } = items;

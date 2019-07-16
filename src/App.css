@@ -20,6 +20,7 @@ body {
   text-align: right !important;
 }
 
+/* Rc Switch Styles */
 .rc-switch {
   position: relative;
   display: inline-block;
@@ -74,8 +75,8 @@ body {
   outline: none;
 }
 .rc-switch-checked {
-  border: 1px solid #87d068;
-  background-color: #87d068;
+  border: 1px solid #2ecc71;
+  background-color: #2ecc71;
 }
 .rc-switch-checked .rc-switch-inner {
   left: 4px;
