@@ -44,7 +44,9 @@ yarn run start
 yarn build
 ```
 
+```
 # Open chrome://extensions/ from your chrome browser and enable Developer mode
+```
 
 <img src="assets/chrome-extention.png" alt="Markdownify" >
 
