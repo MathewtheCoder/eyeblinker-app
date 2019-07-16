@@ -12,9 +12,8 @@
 
 ## Technologies
 
-- ### Front end
-  - [React](https://reactjs.org/) - JavaScript library for building user interfaces.
-  - [Semantic-ui-react](https://react.semantic-ui.com/)-Semantic-UI-React integration.
+- [React](https://reactjs.org/) - JavaScript library for building user interfaces.
+- [Semantic-ui-react](https://react.semantic-ui.com/)-Semantic-UI-React integration.
 
 ## Getting Started
 
@@ -35,12 +34,28 @@ rm -rf .git && git init
 yarn
 # Start  client
 yarn run start
+
 ```
+
+#### Run chrome extenstion
+
+```
+# Make a build
+yarn build
+# Open chrome://extensions/ from your chrome browser and enable Developer mode
+
+# Click "Load unpacked" button and upload the build folder
+
+
+```
+
+<img src="assets/chrome-extention.png" alt="Markdownify" width="200">
 
 ## ☑ TODO
 
 - [ ] Ability to add sounds for reminder
 - [ ] Ability to customize reminder message
+- [ ] Change the font family
 
 ## License
 
