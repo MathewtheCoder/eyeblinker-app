@@ -42,14 +42,13 @@ yarn run start
 ```
 # Make a build
 yarn build
+
 # Open chrome://extensions/ from your chrome browser and enable Developer mode
 
-# Click "Load unpacked" button and upload the build folder
-
-
-```
-
 <img src="assets/chrome-extention.png" alt="Markdownify" >
+
+# Click "Load unpacked" button and upload the build folder
+```
 
 ## ☑ TODO
 
