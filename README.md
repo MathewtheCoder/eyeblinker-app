@@ -49,7 +49,7 @@ yarn build
 
 ```
 
-<img src="assets/chrome-extention.png" alt="Markdownify" width="200">
+<img src="assets/chrome-extention.png" alt="Markdownify" >
 
 ## ☑ TODO
 
