@@ -77,6 +77,7 @@ class App extends React.Component {
               <Slider
                 color="black"
                 inverted={false}
+                value={durationTime}
                 settings={{
                   start: durationTime,
                   min: 5,
