@@ -61,6 +61,8 @@ yarn build
 - [ ] Change the font family
 - [ ] Add google analytics
 
+Find me on [twitter](https://twitter.com/muhsinkeramam) if you have any questions or comments!
+
 ## License
 
 MIT
