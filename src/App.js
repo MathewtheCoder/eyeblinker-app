@@ -11,6 +11,12 @@ import { Slider } from 'react-semantic-ui-range';
 
 import './App.css';
 
+const title = 'Eye Blinker';
+const post =
+  'A simple chrome extension that helps you to follow the  20-20-20 rule. Built by @muhsinkeramam';
+const url =
+  'https://chrome.google.com/webstore/detail/eye-blinker/fbgchecgijgcacfckobealojikbohcdd';
+
 class App extends React.Component {
   state = { durationTime: 20, showBlinker: true, showWindow: true };
 
@@ -46,8 +52,30 @@ class App extends React.Component {
     this.sendMessageToChrome({ key: 'showBlinker', value: !showBlinkerOrNot });
   };
 
-  openTwitter = () => {
-    window.open('https://twitter.com/muhsinkeramam', '_blank');
+  shareViaTwitter = () => {
+    window.open(
+      // eslint-disable-next-line
+      'http://twitter.com/share?url=' +
+        encodeURIComponent(url) +
+        '&text=' +
+        encodeURIComponent(post),
+      '',
+      'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0'
+    );
+  };
+
+  shareViaFacebook = () => {
+    window.open(
+      // eslint-disable-next-line
+      'http://www.facebook.com/sharer.php?s=100&p[title]=' +
+        encodeURIComponent(title) +
+        '&p[summary]=' +
+        encodeURIComponent(post) +
+        '&p[url]=' +
+        url,
+      'sharer',
+      'top=0,left=0,toolbar=0,status=0,width=550,height=450'
+    );
   };
 
   render() {
@@ -99,17 +127,19 @@ class App extends React.Component {
         </Grid>
 
         <Grid columns={2}>
-          <Grid.Column computer="8">
-            {/* <Header as="h5">Eye Blinker</Header> */}
-          </Grid.Column>
-
+          <Grid.Column computer="8" />
           <Grid.Column computer="8" textAlign="right">
-            <Icon name="share alternate" size="large" className="icon" />
+            <Icon
+              name="facebook"
+              size="large"
+              className="icon"
+              onClick={this.shareViaFacebook}
+            />
             <Icon
               name="twitter"
               size="large"
               className="icon"
-              onClick={this.openTwitter}
+              onClick={this.shareViaTwitter}
             />
           </Grid.Column>
         </Grid>
