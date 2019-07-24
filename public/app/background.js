@@ -3,12 +3,12 @@ const blinkerSettings = {
   showBlinker: true
 };
 let timer;
-console.log(new Date());
+// console.log(new Date());
 
 chrome.idle.setDetectionInterval(15);
 
 setInterval(() => {
-  console.log(new Date(), blinkerSettings);
+  // console.log(new Date(), blinkerSettings);
 }, 60000);
 
 const options = {
@@ -32,19 +32,19 @@ function sendNotification() {
 
 function initializeTimer(duration) {
   if (blinkerSettings.showBlinker) {
-    console.log(
-      `notification will sent after ${duration} minutes `,
-      new Date()
-    );
+    // console.log(
+    //   `notification will sent after ${duration} minutes `,
+    //   new Date()
+    // );
   }
 
   if (timer) clearTimeout(timer);
 
   timer = setInterval(() => {
-    console.log(
-      `Message will sent only if Show blinker =`,
-      blinkerSettings.showBlinker
-    );
+    // console.log(
+    //   `Message will sent only if Show blinker =`,
+    //   blinkerSettings.showBlinker
+    // );
     if (blinkerSettings.showBlinker) {
       sendNotification();
     }
@@ -95,7 +95,7 @@ chrome.idle.onStateChanged.addListener(state => {
     systemLocked = true;
   }
   if (state === 'active' && systemLocked) {
-    console.log('Chrome Status', state);
+    // console.log('Chrome Status', state);
 
     initializeTimer(blinkerSettings.durationTime);
     systemLocked = !systemLocked;
